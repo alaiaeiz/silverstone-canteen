@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../theme/app_theme.dart';
 import '../utils/format_rupiah.dart';
 import '../widgets/app_text.dart';
 import 'detail_menu_page.dart';
@@ -16,11 +15,12 @@ class DaftarMenuPage extends StatefulWidget {
 
 class _DaftarMenuPageState extends State<DaftarMenuPage> {
   final List<Map<String, dynamic>> _menus = [
-    {'nama': 'Nasi Goreng Bakso', 'harga': 15000, 'ikon': Icons.rice_bowl_outlined},
-    {'nama': 'Es Teh Manis', 'harga': 5000, 'ikon': Icons.local_cafe_outlined},
-    {'nama': 'Ayam Geprek Sambal Bawang', 'harga': 18000, 'ikon': Icons.ramen_dining_outlined},
-    {'nama': 'Kopi Susu Gula Aren', 'harga': 20000, 'ikon': Icons.coffee_outlined},
-    {'nama': 'Mie Ayam Pangsit', 'harga': 13000, 'ikon': Icons.ramen_dining_outlined},
+    {'nama': 'Gulai Tikungan', 'harga': 10000, 'ikon': Icons.dinner_dining_outlined},
+    {'nama': 'Bakmi Jaksel', 'harga': 22000, 'ikon': Icons.ramen_dining_outlined},
+    {'nama': 'Bakso Sapi', 'harga': 12000, 'ikon': Icons.soup_kitchen_outlined},
+    {'nama': 'Nasi Tamago', 'harga': 10000, 'ikon': Icons.rice_bowl_outlined},
+    {'nama': 'Susu Murni Bahagia', 'harga': 20000, 'ikon': Icons.local_drink_outlined},
+    {'nama': 'Cheesecuit', 'harga': 30000, 'ikon': Icons.cookie_outlined},
   ];
 
   Future<void> _bukaTambahMenu() async {
@@ -38,8 +38,8 @@ class _DaftarMenuPageState extends State<DaftarMenuPage> {
       appBar: AppBar(
         title: const AppText(
           'Silverstone Canteen',
-          fontSize: 26,
-          fontWeight: FontWeight.w800,
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
         ),
       ),
       body: Column(
@@ -47,10 +47,9 @@ class _DaftarMenuPageState extends State<DaftarMenuPage> {
           const Padding(
             padding: EdgeInsets.all(16),
             child: AppText(
-              "This Week's Menu",
-              fontSize: 26,
-              fontWeight: FontWeight.w800,
-              color: AppColors.ink,
+              'Today\'s Available Menu',
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
             ),
           ),
           Expanded(
@@ -58,41 +57,23 @@ class _DaftarMenuPageState extends State<DaftarMenuPage> {
               itemCount: _menus.length,
               itemBuilder: (context, index) {
                 final menu = _menus[index];
-                final IconData ikon =
-                    menu['ikon'] ?? Icons.restaurant_outlined;
-
+                final IconData ikon = menu['ikon'] ?? Icons.restaurant_menu;
                 return Card(
-                  elevation: 0,
-                  color: AppColors.paper,
-                  surfaceTintColor: Colors.transparent,
-                  shape: const RoundedRectangleBorder(
-                    side: BorderSide(color: AppColors.ink, width: 2),
-                  ),
-                  margin: EdgeInsets.fromLTRB(
-                    index.isOdd ? 28 : 16,
-                    6,
-                    16,
-                    6,
+                  margin: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 6,
                   ),
                   child: ListTile(
-                    contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 12,
-                    ),
-                    leading: Icon(ikon, size: 36),
+                    leading: Icon(ikon),
                     title: AppText(
                       menu['nama'],
-                      fontSize: 18,
-                      fontWeight: FontWeight.w700,
-                      color: AppColors.ink,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
                     ),
                     subtitle: AppText(
                       formatRupiah(menu['harga']),
-                      fontSize: 15,
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.orange,
+                      fontSize: 14,
+                      color: Colors.grey[700],
                     ),
                     trailing: const Icon(Icons.chevron_right),
                     onTap: () {
@@ -100,7 +81,6 @@ class _DaftarMenuPageState extends State<DaftarMenuPage> {
                         () => DetailMenuPage(
                           nama: menu['nama'],
                           harga: menu['harga'],
-                          ikon: ikon,
                         ),
                       );
                     },
@@ -113,7 +93,7 @@ class _DaftarMenuPageState extends State<DaftarMenuPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _bukaTambahMenu,
-        child: const Icon(Icons.add, size: 32),
+        child: const Icon(Icons.add),
       ),
     );
   }

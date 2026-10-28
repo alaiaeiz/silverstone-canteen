@@ -39,9 +39,9 @@ class _TambahMenuPageState extends State<TambahMenuPage> {
     return Scaffold(
       appBar: AppBar(
         title: const AppText(
-          'Tambah Menu',
-          fontSize: 26,
-          fontWeight: FontWeight.w800,
+          'Tambahkan Daftar Menu',
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
         ),
       ),
       body: Padding(
@@ -49,11 +49,13 @@ class _TambahMenuPageState extends State<TambahMenuPage> {
         child: Form(
           key: _formKey,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               TextFormField(
                 controller: _namaController,
-                decoration: const InputDecoration(hintText: 'Nama Menu'),
+                decoration: const InputDecoration(
+                  labelText: 'Nama Menu',
+                  border: OutlineInputBorder(),
+                ),
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
                     return 'Nama menu tidak boleh kosong';
@@ -61,12 +63,15 @@ class _TambahMenuPageState extends State<TambahMenuPage> {
                   return null;
                 },
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 16),
               TextFormField(
                 controller: _hargaController,
                 keyboardType: TextInputType.number,
                 inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                decoration: const InputDecoration(hintText: 'Harga Menu'),
+                decoration: const InputDecoration(
+                  labelText: 'Harga Menu',
+                  border: OutlineInputBorder(),
+                ),
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
                     return 'Harga tidak boleh kosong';
@@ -77,10 +82,10 @@ class _TambahMenuPageState extends State<TambahMenuPage> {
                   return null;
                 },
               ),
-              const SizedBox(height: 28),
+              const SizedBox(height: 24),
               ElevatedButton(
                 onPressed: _simpan,
-                child: const AppText('simpan', fontWeight: FontWeight.w700),
+                child: const AppText('Simpan', fontWeight: FontWeight.w600),
               ),
             ],
           ),

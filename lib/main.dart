@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'pages/daftar_menu_page.dart';
-import 'theme/app_theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +15,18 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Silverstone Canteen',
       debugShowCheckedModeBanner: false,
-      theme: buildAppTheme(),
+      theme: ThemeData(
+        useMaterial3: true,
+        colorSchemeSeed: Colors.indigo,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.indigo,
+          foregroundColor: Colors.white,
+        ),
+        floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          backgroundColor: Colors.indigo,
+          foregroundColor: Colors.white,
+        ),
+      ),
       home: const DaftarMenuPage(),
     );
   }

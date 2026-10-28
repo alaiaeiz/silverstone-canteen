@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../theme/app_theme.dart';
 import '../utils/format_rupiah.dart';
 import '../widgets/app_text.dart';
 
@@ -14,7 +13,7 @@ class DetailMenuPage extends StatelessWidget {
     super.key,
     required this.nama,
     required this.harga,
-    this.ikon = Icons.restaurant_outlined,
+    this.ikon = Icons.restaurant, // cadangan kalau ikon tidak dikirim
   });
 
   @override
@@ -23,51 +22,20 @@ class DetailMenuPage extends StatelessWidget {
       appBar: AppBar(
         title: const AppText(
           'Detail Menu',
-          fontSize: 26,
-          fontWeight: FontWeight.w800,
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(24),
+      body: Center(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(ikon, size: 40, color: AppColors.orange),
-            const SizedBox(height: 12),
-            AppText(
-              nama,
-              fontSize: 44,
-              fontWeight: FontWeight.w800,
-              color: AppColors.ink,
-            ),
-            const Spacer(),
-            Transform.rotate(
-              angle: -0.04,
-              child: Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 14,
-                ),
-                decoration: BoxDecoration(
-                  color: AppColors.lime,
-                  border: Border.all(color: AppColors.ink, width: 2),
-                ),
-                child: AppText(
-                  formatRupiah(harga),
-                  fontSize: 26,
-                  fontWeight: FontWeight.w800,
-                  color: AppColors.ink,
-                ),
-              ),
-            ),
-            const SizedBox(height: 32),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () => Get.back(),
-                child: const AppText('kembali', fontWeight: FontWeight.w700),
-              ),
-            ),
+            Icon(ikon, size: 80),
+            const SizedBox(height: 16),
+            AppText(nama, fontSize: 22, fontWeight: FontWeight.bold),
+            const SizedBox(height: 8),
+            AppText(formatRupiah(harga), fontSize: 18),
+            const SizedBox(height: 24),
           ],
         ),
       ),
